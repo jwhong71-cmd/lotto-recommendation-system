@@ -7,6 +7,7 @@ Edward Thorp (켈리 공식)와 Blaise Pascal (조합론) 알고리즘 추가
 import streamlit as st
 import requests
 import pandas as pd
+import plotly.express as px
 from collections import defaultdict, Counter
 import itertools
 import random
@@ -14,8 +15,7 @@ import time
 import json
 import io
 from datetime import datetime, timedelta
-import plotly.express as px
-import plotly.graph_objects as go
+from concurrent.futures import ThreadPoolExecutor
 
 # 페이지 설정
 st.set_page_config(
@@ -61,8 +61,7 @@ def fetch_lotto_data(start_round, end_round):
     batch_size = 10  # 10개씩 병렬 처리
     failed_rounds = []
     
-    import concurrent.futures
-    import threading
+
     
     def fetch_single_round(round_num):
         """단일 회차 데이터 수집"""
@@ -700,4 +699,5 @@ def main():
     """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
+
     main()
